@@ -79,7 +79,7 @@ Check out all the [active branches](https://github.com/austintgriffith/scaffold-
 
 # 💌 P.S.
 
-🌍 You need an RPC key for testnets and production deployments, create an [Alchemy](https://www.alchemy.com/) account and replace the value of `ALCHEMY_KEY = xxx` in `packages/react-app/src/constants.js` with your new key.
+🌍 You need an RPC key for testnets and production deployments, create an [Infura](https://infura.io/) account and replace the value of `INFURA_ID = xxx` in `packages/vite-app-ts/src/config/apiKeysConfig.ts` with your new key.
 
 # 💬 Support Chat
 
