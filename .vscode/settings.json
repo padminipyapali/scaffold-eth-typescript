@@ -59,5 +59,12 @@
    "[solidity]": {
      "editor.defaultFormatter": "JuanBlanco.solidity"
    },
+   "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+   },
+   "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true,
+   },
    "solidity.defaultCompiler": "localNodeModule"
 }
