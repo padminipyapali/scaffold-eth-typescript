@@ -14,15 +14,13 @@ import "hardhat-deploy";
 // import 'solidity-coverage';
 
 import * as fs from "fs";
-import * as path from "path";
 import * as chalk from "chalk";
 
 import { Provider, TransactionRequest } from "@ethersproject/providers";
 
 import { HardhatUserConfig, task } from "hardhat/config";
 import { HttpNetworkUserConfig } from "hardhat/types";
-import { HardhatRuntimeEnvironmentExtended, TEthers } from "helpers/types/hardhat-type-extensions";
-import { create } from "ipfs-http-client";
+import { TEthers } from "helpers/types/hardhat-type-extensions";
 
 /**
  * Set your target network!!!
@@ -71,7 +69,7 @@ const config: HardhatUserConfig = {
       // },
     },
     rinkeby: {
-      url: "https://rinkeby.infura.io/v3/7d7e7fedbfb04c27b55ef19358814bf2",
+      url: "https://rinkeby.infura.io/v3/7d7e7fedbfb04c27b55ef19358814bf2", // Replace with your infura Id.
       accounts: {
         mnemonic: getMnemonic(),
       },

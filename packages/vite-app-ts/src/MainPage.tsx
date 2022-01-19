@@ -1,28 +1,23 @@
-import React, { FC, useEffect, useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { FC, useEffect, useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import '~~/styles/main-page.css';
-import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useGasPrice } from 'eth-hooks';
-import { useDexEthPrice } from 'eth-hooks/dapps';
+import "~~/styles/main-page.css";
+import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useGasPrice } from "eth-hooks";
+import { useDexEthPrice } from "eth-hooks/dapps";
 
-import { GenericContract } from 'eth-components/ant/generic-contract';
-import { Hints, Subgraph, ExampleUI } from '~~/components/pages';
+import { GenericContract } from "eth-components/ant/generic-contract";
+import { Hints, ExampleUI } from "~~/components/pages";
 
-import { useEventListener } from 'eth-hooks';
-import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from './components/main';
-import { useScaffoldProviders as useScaffoldAppProviders } from '~~/components/main/hooks/useScaffoldAppProviders';
-import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';
-import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
-import { useEthersContext } from 'eth-hooks/context';
-import { NETWORKS } from '~~/models/constants/networks';
-import {
-  useAppContracts,
-  useAppContractsActions,
-  useConnectAppContracts,
-  useLoadAppContracts,
-} from '~~/config/contractContext';
-import { asEthersAdaptor } from 'eth-hooks/functions';
-import { const_UseBurnerWalletAsFallback, MAINNET_PROVIDER } from '~~/config/appConfig';
+import { useEventListener } from "eth-hooks";
+import { MainPageMenu, MainPageContracts, MainPageFooter, MainPageHeader } from "./components/main";
+import { useScaffoldProviders as useScaffoldAppProviders } from "~~/components/main/hooks/useScaffoldAppProviders";
+import { useBurnerFallback } from "~~/components/main/hooks/useBurnerFallback";
+import { useScaffoldHooksExamples as useScaffoldHooksExamples } from "./components/main/hooks/useScaffoldHooksExamples";
+import { useEthersContext } from "eth-hooks/context";
+import { NETWORKS } from "~~/models/constants/networks";
+import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from "~~/config/contractContext";
+import { asEthersAdaptor } from "eth-hooks/functions";
+import { const_UseBurnerWalletAsFallback, MAINNET_PROVIDER } from "~~/config/appConfig";
 
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
@@ -76,8 +71,8 @@ export const Main: FC = () => {
   // -----------------------------
 
   // init contracts
-  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
-  const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
+  const yourContract = useAppContracts("YourContract", ethersContext.chainId);
+  const mainnetDai = useAppContracts("DAI", NETWORKS.mainnet.chainId);
 
   // keep track of a variable from the contract in the local React state:
   const [purpose, update] = useContractReader(
@@ -88,7 +83,7 @@ export const Main: FC = () => {
   );
 
   // 📟 Listen for broadcast events
-  const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);
+  const [setPurposeEvents] = useEventListener(yourContract, "SetPurpose", 0);
 
   // -----------------------------
   // .... 🎇 End of examples
@@ -99,7 +94,7 @@ export const Main: FC = () => {
   // 💰 this hook will get your balance
   const [yourCurrentBalance] = useBalance(ethersContext.account);
 
-  const [route, setRoute] = useState<string>('');
+  const [route, setRoute] = useState<string>("");
   useEffect(() => {
     setRoute(window.location.pathname);
   }, [setRoute]);
@@ -107,6 +102,7 @@ export const Main: FC = () => {
   return (
     <div className="App">
       <MainPageHeader scaffoldAppProviders={scaffoldAppProviders} price={ethPrice} />
+      <p>Hello</p>
 
       {/* Routes should be added between the <Switch> </Switch> as seen below */}
       <BrowserRouter>
@@ -118,7 +114,7 @@ export const Main: FC = () => {
           {/* you can add routes here like the below examlples */}
           <Route path="/hints">
             <Hints
-              address={ethersContext?.account ?? ''}
+              address={ethersContext?.account ?? ""}
               yourCurrentBalance={yourCurrentBalance}
               mainnetProvider={scaffoldAppProviders.mainnetAdaptor?.provider}
               price={ethPrice}

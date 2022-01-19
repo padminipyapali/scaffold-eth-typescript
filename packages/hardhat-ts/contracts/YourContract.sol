@@ -1,12 +1,13 @@
 pragma solidity >=0.8.0 <0.9.0;
 //SPDX-License-Identifier: MIT
 
-import 'hardhat/console.sol';
+import "hardhat/console.sol";
 
 //import "@openzeppelin/contracts/access/Ownable.sol"; //https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol
 
 contract YourContract {
-  string public purpose = 'Building Unstoppable Apps!!!';
+  string public purpose = "Building Unstoppable Apps!!!";
+  mapping(address => string) private messages;
 
   // this is an error handler
   //error EmptyPurposeError(uint code, string message);
@@ -17,19 +18,17 @@ contract YourContract {
 
   // this is an event for the function below
   event SetPurpose(address sender, string purpose);
+  event NewMessage(address sender, string newMessage);
 
   function setPurpose(string memory newPurpose) public payable {
-    // you can add error handling!
-
-    // if(bytes(newPurpose).length == 0){
-    //     revert EmptyPurposeError({
-    //         code: 1,
-    //         message: "Purpose can not be empty"
-    //     });
-    // }
-
     purpose = newPurpose;
-    console.log(msg.sender, 'set purpose to', purpose);
+    console.log(msg.sender, "set purpose to", purpose);
     emit SetPurpose(msg.sender, purpose);
+  }
+
+  function addMessage(string memory _newMessage) external {
+    messages[msg.sender] = _newMessage;
+    console.log(msg.sender, "added a new message ", _newMessage);
+    emit NewMessage(msg.sender, _newMessage);
   }
 }
